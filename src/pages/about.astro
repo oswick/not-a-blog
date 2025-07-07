@@ -1,0 +1,193 @@
+---
+// src/pages/about.astro
+import BlogLayout from "../layouts/BlogLayout.astro";
+---
+
+<BlogLayout title="about">
+  <div class="about-container">
+    <h1>~/about</h1>
+    
+    <div class="intro">
+      <p>
+        ¡hola! soy beto, y este es mi pequeño rincón en internet.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>¿quién soy?</h2>
+      <p>aún tratando de averiguarlo</p>
+    </div>
+
+    <div class="section">
+      <h2>sobre este sitio</h2>
+      <p>
+        desde hace más de un año deje de utilizar redes sociales para desconectar de toda la negatividad de internet y enfocar mi tiempo y mente a otras cosas,
+        este blog es mi espacio personal para documentar mis pensamientos, 
+        proyectos y aprendizajes. está hecho con 
+        <a href="https://astro.build/" target="_blank">astro.</a>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>contacto</h2>
+      <p>
+        puedes encontrarme en:
+      </p>
+      <ul class="contact-links">
+        <li>✉️ <a href="mailto:o.escamilla@proton.me">email</a></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>cosas que me gustan</h2>
+      <div class="interests">
+        <span class="tag">programación</span>
+        <span class="tag">libros</span>
+        <span class="tag">música</span>
+        <span class="tag">videojuegos</span>
+        <span class="tag">fotografía</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>ahora</h2>
+      <p class="now-info">
+        actualmente estoy:
+      </p>
+      <ul>
+        <li>🔨 trabajando en [proyecto actual]</li>
+        <li>📖 leyendo "[libro que estás leyendo]"</li>
+        <li>🎵 escuchando [artista/género musical]</li>
+        <li>🌱 aprendiendo [nueva habilidad/tecnología]</li>
+      </ul>
+      <p class="last-updated">
+        <small>última actualización: julio 2025</small>
+      </p>
+    </div>
+
+    <div class="footer-nav">
+      <p>
+        <a href="/blog">← ver mis posts</a> | 
+        <a href="/">inicio</a>
+      </p>
+    </div>
+  </div>
+</BlogLayout>
+
+<style>
+  .about-container {
+    max-width: 100%;
+    line-height: 1.6;
+  }
+
+  h1 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 0.3rem;
+  }
+
+  .intro {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .section {
+    margin: 2rem 0;
+  }
+
+  .section p {
+    margin: 1rem 0;
+  }
+
+  .contact-links {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .contact-links li {
+    margin: 0.5rem 0;
+    font-family: 'Courier New', monospace;
+  }
+
+  .interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .tag {
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
+  }
+
+  .now-info {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .last-updated {
+    margin-top: 1rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  .footer-nav {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px dashed #333;
+    text-align: center;
+  }
+
+  .footer-nav a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+
+  .footer-nav a:hover {
+    color: #ff6600;
+    text-decoration: underline;
+  }
+
+  a {
+    color: #0066cc;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #ff6600;
+    background-color: #ffff99;
+  }
+
+  a:visited {
+    color: #800080;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .interests {
+      flex-direction: column;
+    }
+    
+    .tag {
+      display: inline-block;
+      margin: 0.2rem 0;
+    }
+  }
+</style>

@@ -1,7 +1,7 @@
 ---
 title: "que hay"
 pubDate: 2025-07-07
-slug: "mi-primer-post"
+slug: "naaa-primer-post"
 description: "jugando al death stranding"
 ---
 
