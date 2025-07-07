@@ -1,0 +1,78 @@
+---
+// pages/index.astro
+import BlogLayout from "../layouts/BlogLayout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+// Sort posts by date (newest first)
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+---
+
+<BlogLayout title="Mi Blog">
+  <main>
+    <h1>latest posts</h1>
+    <div class="posts">
+      {sortedPosts.map((post) => (
+        <article class="post-preview">
+          <h2>
+            <a href={`/blog/${post.slug}`}>
+              {post.data.title}
+            </a>
+          </h2>
+          {post.data.pubDate && (
+            <p class="date">
+              Publicado el {new Date(post.data.pubDate).toLocaleDateString("es-ES", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </p>
+          )}
+          {post.data.description && (
+            <p class="description">{post.data.description}</p>
+          )}
+        </article>
+      ))}
+    </div>
+  </main>
+</BlogLayout>
+
+<style>
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    font-family: monospace;
+  }
+  
+  .post-preview {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+  
+  .post-preview h2 {
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .post-preview a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .post-preview a:hover {
+    text-decoration: underline;
+  }
+  
+  .date {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+  }
+  
+  .description {
+    color: #777;
+    line-height: 1.5;
+  }
+</style>

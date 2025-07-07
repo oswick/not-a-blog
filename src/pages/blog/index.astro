@@ -1,0 +1,139 @@
+---
+// src/pages/blog/index.astro
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog");
+// Ordenar posts por fecha (más recientes primero)
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+---
+
+<BlogLayout title="blog">
+  <h1>~/blog</h1>
+  <p>todos mis posts escritos hasta ahora...</p>
+  
+  <div class="posts-list">
+    {sortedPosts.map((post) => (
+      <article class="post-entry">
+        <div class="post-date">
+          {new Date(post.data.pubDate).toLocaleDateString("es-ES", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })}
+        </div>
+        <div class="post-info">
+          <h2>
+            <a href={`/blog/${post.slug}`}>
+              {post.data.title}
+            </a>
+          </h2>
+          {post.data.description && (
+            <p class="post-description">{post.data.description}</p>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+  
+  <div class="blog-footer">
+    <p>
+      <a href="/rss.xml">rss feed</a> | 
+      <a href="/">← volver al inicio</a>
+    </p>
+  </div>
+</BlogLayout>
+
+<style>
+  h1 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+  }
+  
+  .posts-list {
+    margin: 2rem 0;
+  }
+  
+  .post-entry {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #ccc;
+  }
+  
+  .post-entry:last-child {
+    border-bottom: none;
+  }
+  
+  .post-date {
+    font-family: 'Courier New', monospace;
+    color: #666;
+    font-size: 0.9rem;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+  
+  .post-info {
+    flex: 1;
+  }
+  
+  .post-info h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+  }
+  
+  .post-info a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  .post-info a:hover {
+    color: #ff6600;
+    text-decoration: underline;
+  }
+  
+  .post-info a:visited {
+    color: #800080;
+  }
+  
+  .post-description {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .blog-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px dashed #333;
+    text-align: center;
+  }
+  
+  .blog-footer a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  .blog-footer a:hover {
+    color: #ff6600;
+    text-decoration: underline;
+  }
+  
+  /* Responsive para móviles */
+  @media (max-width: 600px) {
+    .post-entry {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .post-date {
+      min-width: auto;
+      font-size: 0.8rem;
+    }
+  }
+</style>
